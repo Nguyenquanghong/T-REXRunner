@@ -1,0 +1,36 @@
+{
+    "tasks": [
+        {
+            "type": "cppbuild",
+            "label": "C/C++: gcc.exe build active file",
+            "command": "C:/Users/Quang Hong/Desktop/T-REXRunner/MinGW/bin/g++.exe",
+            "args": [
+                "-fdiagnostics-color=always",
+                "-g",
+                "C:/Users/Quang Hong/Desktop/T-REXRunner/src/*.cpp",
+				"-IC:/Users/Quang Hong/Desktop/T-REXRunner/header/",
+				"-IC:/Users/Quang Hong/Desktop/T-REXRunner/MinGW/include/",
+				"-lmingw32",
+				"-lSDL2main",
+				"-lSDL2",
+				"-lSDL2_image",
+				"-lSDL2_mixer",
+				"-lSDL2_ttf",
+                "-o",
+                "C:/Users/Quang Hong/Desktop/T-REXRunner/T-REX-Runner"
+            ],
+            "options": {
+                "cwd": "C:/Users/Quang Hong/Desktop/T-REXRunner/MinGW/bin"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "compiler: C:/Users/Quang Hong/Desktop/T-REXRunner/MinGW/bin/g++.exe"
+        }
+    ],
+    "version": "2.0.0"
+}
