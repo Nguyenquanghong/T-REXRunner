@@ -54,7 +54,7 @@ SDL_Texture* loadTexture(const std::string& path, SDL_Renderer* renderer) {
     return newTexture;
 }
 
-// Hàm xử lý background chạy liên tục
+// Hàm xử lý di chuyểnchuyển liên tục
 void updateBackground(SDL_Renderer* renderer, vector<SDL_Texture*>& bgTextures, int& bgX) {
     // Di chuyển nền sang trái
     bgX -= BG_SPEED;
@@ -74,6 +74,20 @@ void updateBackground(SDL_Renderer* renderer, vector<SDL_Texture*>& bgTextures, 
         SDL_RenderCopy(renderer, bgTextures[i], NULL, &dstRect);
     }
 }
+//Ham su li trang thai trex
+void renderTrex(SDL_Renderer* renderer, SDL_Texture* runTexture, SDL_Texture* jumpTexture, SDL_Texture* duckTexture, Trex& mainCharacter){
+    if (mainCharacter.isJumping) {
+        SDL_RenderCopy(renderer, jumpTexture, NULL, &mainCharacter.trexRect);
+    } 
+    else if (mainCharacter.isDucking) {
+        SDL_RenderCopy(renderer, duckTexture, NULL, &mainCharacter.trexRect);
+    } 
+    else {
+        SDL_RenderCopy(renderer, runTexture, NULL, &mainCharacter.trexRect);
+    }
+}
+
+
 
 
 
