@@ -9,35 +9,24 @@
 
 
 int main(int argc, char* argv[]) {
-    SDL_Window* window = nullptr;
-    SDL_Renderer* renderer = nullptr;
+    //khoi tao
     if (!InitSDL(window, renderer)) return -1;
-    Trex trex;
-    Background background;
-    Enemy enemy;
+    if (!InitMixer()) return -1;
+
+    // load anh + sound
     background.loadBackground_Texture(renderer);
+
     trex.loadTrex_Texture( renderer);
+    trex.loadTrexSounds();
     enemy.loadObjectTexture(renderer);
-    SDL_Event event;
-    while(running){
-        GameManager::updateSpeed();
-        ProcessInput(running,trex);
-    
-        SDL_RenderClear(renderer);
-        background.renderBackground_Texture(renderer);
-        background.updateBackgroundPosition(renderer);
-        trex.updatePhysic();
-        trex.updateAnimation();
-        trex.renderTrex_Texture(renderer);
-        enemy.updateBirdAnimation();
-        enemy.updateObjectPosition(renderer);
 
+    //run game 
+    rungame();
 
-        SDL_RenderPresent(renderer);
-        SDL_Delay(16); // Giữ ~60 FPS
-    }
+    // giai phong
     trex.freeTrex_Texture();
     background.freeBackground_Texture();
     CloseSDL(window,renderer);
+    CloseMixer();
     return 0;
 }

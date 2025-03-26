@@ -2,14 +2,18 @@
 #define TREX_H
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+#include <SDL2/SDL_mixer.h>
+
 #include <iostream>
 struct Trex{
     SDL_Texture* trex_run[2];
     SDL_Texture* trex_jump;
     SDL_Texture* trex_bow[2];
+
     int currentFrame;
     int frameDelay;
     Uint32 lastFrameTime;
+
     SDL_Rect trexRect;
     float velocityY;
     bool isDucking;
@@ -24,7 +28,9 @@ struct Trex{
     void updatePhysic();
     void updateAnimation();
     void loadTrex_Texture(SDL_Renderer* renderer);
+    void loadTrexSounds();
     void renderTrex_Texture(SDL_Renderer* renderer);
+    void resetPosition();
     void freeTrex_Texture();
 };
 

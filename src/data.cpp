@@ -4,11 +4,12 @@
 #include <bits/stdc++.h>
 
     bool running = true;
-    const int WINDOW_WIDTH = 900;
+    bool isOver = false;
+    const float WINDOW_WIDTH = 900;
     const int WINDOW_HEIGHT = 500;
     // background
     const Uint32 TIME_INCREASE_SPEED = 8000;
-    float BG_SPEED = 2.0f;
+    float BG_SPEED = 4.0f;
     float BG_X = 0.0f;
     Uint32 lastTime = SDL_GetTicks();
     Uint32 lastSpeedIncreaseTime = SDL_GetTicks();
@@ -23,3 +24,14 @@
     const int TREX_Y = BG_Y+32;
     const int TREX_WIDTH = 50;
     const int TREX_HEIGHT = 50;
+    
+    SDL_Window* window = nullptr;
+    SDL_Renderer* renderer = nullptr;
+
+    Trex trex;
+    Background background;
+    Enemy enemy;
+    // sound
+    Mix_Chunk* jumpSound = nullptr;
+    Mix_Chunk* dieSound = nullptr;
+    Mix_Chunk* scoreSound = nullptr;

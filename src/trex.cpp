@@ -71,6 +71,7 @@ void Trex:: trexJumping(){
     if (!isJumping&&!isDucking) { // Chỉ nhảy khi đứng trên mặt đất
         isJumping = true;
         velocityY = JUMP_FORCE;
+        Mix_PlayChannel(-1, jumpSound, 0);
     }
 }
 
@@ -86,6 +87,21 @@ void Trex:: updatePhysic(){
             fastFall = false;
         }
     }
+}
+void Trex:: loadTrexSounds(){
+    jumpSound = Mix_LoadWAV("C:/Users/Quang Hong/Desktop/T-REXRunner/Data/sound/jump_sound.wav");
+    dieSound = Mix_LoadWAV("C:/Users/Quang Hong/Desktop/T-REXRunner/Data/sound/die_sound.wav");
+    scoreSound = Mix_LoadWAV("C:/Users/Quang Hong/Desktop/T-REXRunner/Data/sound/point_sound.wav");
+
+}
+void Trex:: resetPosition(){
+    trexRect = {TREX_X, TREX_Y, TREX_WIDTH, TREX_HEIGHT}; // Reset vị trí ban đầu
+    isDucking = false;
+    isJumping = false;
+    fastFall = false;
+    velocityY = 0;
+    currentFrame = 0;
+    
 }
 
 void Trex:: freeTrex_Texture(){
