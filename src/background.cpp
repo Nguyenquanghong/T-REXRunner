@@ -3,17 +3,17 @@
 #include <data.h>
 
 void Background:: loadBackground_Texture(SDL_Renderer* renderer){
-    bgColor = loadTexture("C:/Users/Quang Hong/Desktop/T-REXRunner/Data/image/background/blue.png",renderer);
+    bgColor = loadTexture("Data/image/background/blue.png",renderer);
 
-    bgTextures.push_back(loadTexture("C:/Users/Quang Hong/Desktop/T-REXRunner/Data/image/background/ground_1.png",renderer));
-    bgTextures.push_back(loadTexture("C:/Users/Quang Hong/Desktop/T-REXRunner/Data/image/background/ground_2.png", renderer));
-    bgTextures.push_back(loadTexture("C:/Users/Quang Hong/Desktop/T-REXRunner/Data/image/background/ground_3.png", renderer));
-    bgTextures.push_back(loadTexture("C:/Users/Quang Hong/Desktop/T-REXRunner/Data/image/background/ground_4.png", renderer));
-    bgTextures.push_back(loadTexture("C:/Users/Quang Hong/Desktop/T-REXRunner/Data/image/background/ground_5.jpg", renderer));
+    bgTextures.push_back(loadTexture("Data/image/background/ground_1.png",renderer));
+    bgTextures.push_back(loadTexture("Data/image/background/ground_2.png", renderer));
+    bgTextures.push_back(loadTexture("Data/image/background/ground_3.png", renderer));
+    bgTextures.push_back(loadTexture("Data/image/background/ground_4.png", renderer));
+    bgTextures.push_back(loadTexture("Data/image/background/ground_5.jpg", renderer));
+    startGameBg = loadTexture("Data/image/background/start.png",renderer);
+    overGameBg = loadTexture("Data/image/background/Gameover.png",renderer);
 
-    overGameBg = loadTexture("C:/Users/Quang Hong/Desktop/T-REXRunner/Data/image/background/Gameover.png",renderer);
-
-    restartButton = loadTexture("C:/Users/Quang Hong/Desktop/T-REXRunner/Data/image/background/replay.png",renderer);
+    restartButton = loadTexture("Data/image/background/replay.png",renderer);
 }
 
 void Background:: renderBackground_Texture(SDL_Renderer* renderer){
@@ -42,7 +42,10 @@ void Background::updateBackgroundPosition(SDL_Renderer* renderer) {
 void Background:: resetPosition(){
     BG_X = 0;
 }
+void Background:: renderStartGameBackground_Texture(SDL_Renderer* renderer){
+    SDL_RenderCopy(renderer,startGameBg,NULL,NULL);
 
+}
 void Background:: renderOverGameBackground_Texture(SDL_Renderer* renderer){
     SDL_RenderCopy(renderer,overGameBg,NULL,NULL);
 
@@ -57,4 +60,7 @@ void Background:: freeBackground_Texture(){
         SDL_DestroyTexture(texture);
     }
     SDL_DestroyTexture(bgColor);
+    SDL_DestroyTexture(startGameBg);
+    SDL_DestroyTexture( overGameBg);
+    SDL_DestroyTexture( restartButton);
 }

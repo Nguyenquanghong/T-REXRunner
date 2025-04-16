@@ -4,8 +4,7 @@
 #include <bits/stdc++.h>
 
     bool running = true;
-    bool isOver = false;
-    const float WINDOW_WIDTH = 900;
+    const float WINDOW_WIDTH = 700;
     const int WINDOW_HEIGHT = 500;
     // background
     const Uint32 TIME_INCREASE_SPEED = 8000;
@@ -31,7 +30,10 @@
     Trex trex;
     Background background;
     Enemy enemy;
+    Score score;
     // sound
     Mix_Chunk* jumpSound = nullptr;
     Mix_Chunk* dieSound = nullptr;
     Mix_Chunk* scoreSound = nullptr;
+    Mix_Music* backgroundSound  = nullptr;
+    

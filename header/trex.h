@@ -28,7 +28,6 @@ struct Trex{
     void updatePhysic();
     void updateAnimation();
     void loadTrex_Texture(SDL_Renderer* renderer);
-    void loadTrexSounds();
     void renderTrex_Texture(SDL_Renderer* renderer);
     void resetPosition();
     void freeTrex_Texture();

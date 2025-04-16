@@ -24,7 +24,7 @@ struct Enemy
     void updateObjectPosition(SDL_Renderer* renderer);
     bool checkCollision(const SDL_Rect& dinoRect) ;
     void resetPosition();
-    void freeObject_Texture();
+    void freeEnemy_Texture();
     
 };
 

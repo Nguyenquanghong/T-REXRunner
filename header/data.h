@@ -5,11 +5,12 @@
 #include <trex.h>
 #include <background.h>
 #include <enemy.h>
+#include <graphic.h>
 
     extern bool running;
     extern const float WINDOW_WIDTH;
     extern const int WINDOW_HEIGHT;
-    extern bool isOver;
+   
     //background
     extern const Uint32 TIME_INCREASE_SPEED;
     extern float BG_SPEED;
@@ -35,14 +36,13 @@
     extern Trex trex;
     extern Background background;
     extern Enemy enemy;
-
+    extern Score score;
     extern SDL_Window* window;
     extern SDL_Renderer* renderer;
-
     //sound 
     extern Mix_Chunk* jumpSound;
     extern Mix_Chunk* dieSound;
     extern Mix_Chunk* scoreSound;
-
+    extern Mix_Music* backgroundSound;
 
 #endif

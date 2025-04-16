@@ -15,11 +15,11 @@ Trex::Trex(){
 }
 
 void  Trex:: loadTrex_Texture(SDL_Renderer* renderer){
-    trex_run[0] = loadTexture("C:/Users/Quang Hong/Desktop/T-REXRunner/Data/image/t-rex/dino_run_1.png",renderer);
-    trex_run[1] = loadTexture("C:/Users/Quang Hong/Desktop/T-REXRunner/Data/image/t-rex/dino_run_2.png",renderer);
-    trex_bow[0] = loadTexture("C:/Users/Quang Hong/Desktop/T-REXRunner/Data/image/t-rex/dino_bow_1.png",renderer);
-    trex_bow[1] = loadTexture("C:/Users/Quang Hong/Desktop/T-REXRunner/Data/image/t-rex/dino_bow_2.png",renderer);
-    trex_jump = loadTexture("C:/Users/Quang Hong/Desktop/T-REXRunner/Data/image/t-rex/dino_jump.png",renderer);
+    trex_run[0] = loadTexture("Data/image/t-rex/dino_run_1.png",renderer);
+    trex_run[1] = loadTexture("Data/image/t-rex/dino_run_2.png",renderer);
+    trex_bow[0] = loadTexture("Data/image/t-rex/dino_bow_1.png",renderer);
+    trex_bow[1] = loadTexture("Data/image/t-rex/dino_bow_2.png",renderer);
+    trex_jump = loadTexture("Data/image/t-rex/dino_jump.png",renderer);
     if (!trex_run[0]|| !trex_run[1] || !trex_bow[0] || !trex_bow[1]|| !trex_jump) {
         std::cerr << "Failed to load Trex textures: " << SDL_GetError() << std::endl;
     }
@@ -87,12 +87,6 @@ void Trex:: updatePhysic(){
             fastFall = false;
         }
     }
-}
-void Trex:: loadTrexSounds(){
-    jumpSound = Mix_LoadWAV("C:/Users/Quang Hong/Desktop/T-REXRunner/Data/sound/jump_sound.wav");
-    dieSound = Mix_LoadWAV("C:/Users/Quang Hong/Desktop/T-REXRunner/Data/sound/die_sound.wav");
-    scoreSound = Mix_LoadWAV("C:/Users/Quang Hong/Desktop/T-REXRunner/Data/sound/point_sound.wav");
-
 }
 void Trex:: resetPosition(){
     trexRect = {TREX_X, TREX_Y, TREX_WIDTH, TREX_HEIGHT}; // Reset vị trí ban đầu

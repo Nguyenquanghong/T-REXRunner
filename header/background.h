@@ -6,12 +6,14 @@
 struct Background{
     SDL_Texture* bgColor;
     std::vector <SDL_Texture*> bgTextures;
+    SDL_Texture* startGameBg;
     SDL_Texture* overGameBg;
     SDL_Texture* restartButton;
     void loadBackground_Texture(SDL_Renderer* renderer);
     void renderBackground_Texture(SDL_Renderer* renderer);
     void updateBackgroundPosition(SDL_Renderer* renderer);
     void resetPosition();
+    void renderStartGameBackground_Texture(SDL_Renderer* renderer);
     void renderOverGameBackground_Texture(SDL_Renderer* renderer);
     void renderRestartButton(SDL_Renderer* renderer);
     void freeBackground_Texture();

@@ -32,7 +32,7 @@
     }
     bool InitMixer() {
         // Khởi tạo SDL_mixer với tần số 44100 Hz, định dạng âm thanh mặc định, 2 kênh (stereo), buffer 2048
-        if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0) {
+        if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2,  8192) < 0) {
             std::cerr << "Lỗi khởi tạo SDL_mixer: " << Mix_GetError() << std::endl;
             return false;
         }

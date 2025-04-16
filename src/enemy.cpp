@@ -11,7 +11,7 @@
 
         isBirdActive = true;
         birdRect.x = WINDOW_WIDTH - 50;  // Bird xuất hiện ngoài màn hình
-        birdRect.y = (rand() % 2 == 0) ? 300 : 400;  // Random vị trí cao hoặc thấp
+        birdRect.y = (rand() % 10 < 7) ? 330 : 375;  // Random vị trí cao hoặc thấp
         birdRect.w = 50;  // Chiều rộng Bird
         birdRect.h = 40;  // Chiều cao Bird
         
@@ -33,14 +33,14 @@
 
 
     void Enemy:: loadObjectTexture(SDL_Renderer* renderer){
-        bird[0] = loadTexture("C:/Users/Quang Hong/Desktop/T-REXRunner/Data/image/bird/bird-1.png",renderer);
-        bird[1] = loadTexture("C:/Users/Quang Hong/Desktop/T-REXRunner/Data/image/bird/bird-2.png",renderer);
-        objectTextures.push_back(loadTexture("C:/Users/Quang Hong/Desktop/T-REXRunner/Data/image/cactus/cactus-1.png",renderer));
-        objectTextures.push_back(loadTexture("C:/Users/Quang Hong/Desktop/T-REXRunner/Data/image/cactus/cactus-2.png",renderer));
-        objectTextures.push_back(loadTexture("C:/Users/Quang Hong/Desktop/T-REXRunner/Data/image/cactus/cactus-3.png",renderer));
-        objectTextures.push_back(loadTexture("C:/Users/Quang Hong/Desktop/T-REXRunner/Data/image/cactus/cactus-4.png",renderer));
-        objectTextures.push_back(loadTexture("C:/Users/Quang Hong/Desktop/T-REXRunner/Data/image/cactus/cactus-5.png",renderer));
-        objectTextures.push_back(loadTexture("C:/Users/Quang Hong/Desktop/T-REXRunner/Data/image/cactus/cactus-6.png",renderer));
+        bird[0] = loadTexture("Data/image/bird/bird-1.png",renderer);
+        bird[1] = loadTexture("Data/image/bird/bird-2.png",renderer);
+        objectTextures.push_back(loadTexture("Data/image/cactus/cactus-1.png",renderer));
+        objectTextures.push_back(loadTexture("Data/image/cactus/cactus-2.png",renderer));
+        objectTextures.push_back(loadTexture("Data/image/cactus/cactus-3.png",renderer));
+        objectTextures.push_back(loadTexture("Data/image/cactus/cactus-4.png",renderer));
+        objectTextures.push_back(loadTexture("Data/image/cactus/cactus-5.png",renderer));
+        objectTextures.push_back(loadTexture("Data/image/cactus/cactus-6.png",renderer));
         
     }
     void Enemy::updateObjectPosition(SDL_Renderer* renderer) {
@@ -65,15 +65,15 @@
             // Nếu Cactus rời khỏi màn hình, reset vị trí và chọn Cactus mới
             if (objectRects[currentObjectIndex].x + objectRects[currentObjectIndex].w < 0) {
                 cactusCounter++;  // Tăng bộ đếm Cactus
-                if (cactusCounter < 6) {
+                if (cactusCounter < 4) {
                     // Tiếp tục chọn Cactus mới
                     currentObjectIndex = rand() % 6;
                     objectRects[currentObjectIndex].x = WINDOW_WIDTH;
                 } else {
-                    // Sau khi hiển thị 6 Cactus, quay lại Bird
+                    // Sau khi hiển thị 4 Cactus, quay lại Bird
                     isBirdActive = true;
                     birdRect.x = WINDOW_WIDTH;
-                    birdRect.y = (rand() % 2 == 0) ? 300 : 400;
+                    birdRect.y = (rand() % 10 < 7) ? 330 : 375;
                 }
             }
     
@@ -107,7 +107,7 @@
             // Đặt lại Bird về vị trí ban đầu
             isBirdActive = true;
             birdRect.x = WINDOW_WIDTH - 50;
-            birdRect.y = (rand() % 2 == 0) ? 120 : 250;
+            birdRect.y = (rand() % 10 < 7) ? 330 : 375;
             
             // Đặt lại vị trí của các Cactus
             for (int i = 0; i < 6; i++) {
@@ -121,7 +121,11 @@
 
     }
 
-     void Enemy :: freeObject_Texture(){
+     void Enemy :: freeEnemy_Texture(){
         SDL_DestroyTexture(bird[0]);
         SDL_DestroyTexture(bird[1]);
+        for(int i=0;i<6;i++){
+            SDL_DestroyTexture(objectTextures[i]);
+        }
+
      }
