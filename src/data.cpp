@@ -4,8 +4,8 @@
 #include <bits/stdc++.h>
 
     bool running = true;
-    const float WINDOW_WIDTH = 700;
-    const int WINDOW_HEIGHT = 500;
+    const float WINDOW_WIDTH = 550;
+    const int WINDOW_HEIGHT = 350;
     // background
     const Uint32 TIME_INCREASE_SPEED = 8000;
     float BG_SPEED = 4.0f;
@@ -15,12 +15,13 @@
     const int BG_Y =(2*WINDOW_HEIGHT)/3;
     const int BG_HEIGHT =WINDOW_HEIGHT - BG_Y;
     const int BG_WIDTH = WINDOW_WIDTH;
-    
+    const int cloud_speed = 3;
+    int cloud_x = WINDOW_WIDTH;
     //trex
-    const double JUMP_FORCE = -12;
+    const double JUMP_FORCE = -11.8;
     const double GRAVITY = 0.5;
-    const int TREX_X = 20;
-    const int TREX_Y = BG_Y+32;
+    const int TREX_X = 20; 
+    const int TREX_Y = BG_Y+20;
     const int TREX_WIDTH = 50;
     const int TREX_HEIGHT = 50;
     
@@ -35,5 +36,7 @@
     Mix_Chunk* jumpSound = nullptr;
     Mix_Chunk* dieSound = nullptr;
     Mix_Chunk* scoreSound = nullptr;
+    Mix_Chunk* click = nullptr;
     Mix_Music* backgroundSound  = nullptr;
+
     

@@ -20,7 +20,8 @@
     extern const int BG_Y;
     extern const int BG_HEIGHT;
     extern const int BG_WIDTH;
-
+    extern const int cloud_speed;
+    extern int cloud_x;
     // trex
     extern const double JUMP_FORCE;
     extern const double GRAVITY;
@@ -43,6 +44,8 @@
     extern Mix_Chunk* jumpSound;
     extern Mix_Chunk* dieSound;
     extern Mix_Chunk* scoreSound;
+    extern Mix_Chunk* click;
     extern Mix_Music* backgroundSound;
+
 
 #endif
