@@ -14,7 +14,7 @@ void rungame() {
     bool showHighScore = false;
 
     while (running) {
-        // Kiểm tra va chạm
+        // kiểm tra va chạm
         if (enemy.checkCollision(trex.trexRect)) {
             if (!isOver) {
                 isOver = true;
@@ -43,7 +43,7 @@ void rungame() {
                     }
                 }
 
-                // Giao diện Game Over
+                // giao diện Game Over
                 if (isOver && !playgame && !pause) {
                     SDL_Rect restartButton = {210, 112, 135, 49};
                     SDL_Rect backButton = {210, 168, 135, 49};
@@ -83,7 +83,7 @@ void rungame() {
                     }
                 }
 
-                // Giao diện bắt đầu
+                // giao diện bắt đầu
                 else if (!playgame && !isOver && !pause) {
                     SDL_Rect playButton = {205, 84, 147, 42};
                     SDL_Rect highScoreButton = {205, 137, 147, 42};
@@ -96,13 +96,11 @@ void rungame() {
                         playgame = true;
                     }
 
-                    else if (mouseX >= exitButton.x && mouseX <= exitButton.x + exitButton.w &&
-                             mouseY >= exitButton.y && mouseY <= exitButton.y + exitButton.h) {
+                    else if (mouseX >= exitButton.x && mouseX <= exitButton.x + exitButton.w &&nmouseY >= exitButton.y && mouseY <= exitButton.y + exitButton.h) {
                         Mix_PlayChannel(-1, click, 0);
                         running = false;
                     }
-                    else if (mouseX >= highScoreButton.x && mouseX <= highScoreButton.x + highScoreButton.w &&
-                             mouseY >= highScoreButton.y && mouseY <= highScoreButton.y + highScoreButton.h) {
+                    else if (mouseX >= highScoreButton.x && mouseX <= highScoreButton.x + highScoreButton.w && mouseY >= highScoreButton.y && mouseY <= highScoreButton.y + highScoreButton.h) {
                         Mix_PlayChannel(-1, click, 0);
                         showHighScore = true;
                     }
@@ -123,14 +121,14 @@ void rungame() {
             }
         }
 
-        // Cập nhật tốc độ nếu enemy không xuất hiện
+    
         SpeedController::updateSpeed(!enemy.isEnemyOnScreen());
 
-        // Vẽ màn hình theo trạng thái
+
         SDL_RenderClear(renderer);
 
         if (showHighScore) {
-            background.renderHighScore_Texture(renderer); // Giả sử dùng lại nền Game Over cho High Score
+            background.renderHighScore_Texture(renderer);
             score.loadHighScore();
             score.renderHighScore(renderer);
         }
@@ -165,6 +163,6 @@ void rungame() {
         }
 
         SDL_RenderPresent(renderer);
-        SDL_Delay(16); // ~60 FPS
+        SDL_Delay(16); 
     }
 }
