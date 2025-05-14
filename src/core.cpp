@@ -6,13 +6,11 @@
             return false;
         }
     
-        // Khởi tạo SDL_image (hỗ trợ PNG, JPG)
         if (!(IMG_Init(IMG_INIT_PNG) & IMG_INIT_PNG)) {
             std::cerr << "Lỗi SDL_image: " << IMG_GetError() << std::endl;
             return false;
         }
     
-        // Tạo cửa sổ
         window = SDL_CreateWindow("Game Window",
                                   SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
                                   WINDOW_WIDTH,WINDOW_HEIGHT, SDL_WINDOW_SHOWN);
@@ -21,29 +19,24 @@
             return false;
         }
     
-        // Tạo Renderer với Hardware Acceleration (tăng hiệu suất)
         renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
         if (!renderer) {
             std::cerr << "Lỗi tạo renderer: " << SDL_GetError() << std::endl;
             return false;
         }
     
-        return true; // Thành công
+        return true;
     }
     bool InitMixer() {
-        // Khởi tạo SDL_mixer với tần số 44100 Hz, định dạng âm thanh mặc định, 2 kênh (stereo), buffer 2048
         if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2,  8192) < 0) {
             std::cerr << "Lỗi khởi tạo SDL_mixer: " << Mix_GetError() << std::endl;
             return false;
         }
-    
-        // Khởi tạo các định dạng hỗ trợ (MP3, OGG, WAV, MID, MOD)
         if (Mix_Init(MIX_INIT_MP3 | MIX_INIT_OGG) == 0) {
             std::cerr << "Lỗi khởi tạo định dạng SDL_mixer: " << Mix_GetError() << std::endl;
             return false;
         }
-    
-        return true; // Thành công
+        return true; 
     }
 
     void CloseSDL(SDL_Window* window, SDL_Renderer* renderer){
@@ -52,6 +45,6 @@
         SDL_Quit();
     }
     void CloseMixer(){
-        Mix_CloseAudio(); // Đóng audio
-        Mix_Quit();       // Thoát SDL_mixer
+        Mix_CloseAudio(); 
+        Mix_Quit();    
     }
