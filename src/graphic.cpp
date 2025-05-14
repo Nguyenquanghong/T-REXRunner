@@ -4,8 +4,7 @@
 #include <sstream>
 #include <fstream>
 #include <algorithm>
-
-// Hàm tải ảnh vào SDL_Texture
+// load anh
 SDL_Texture* loadTexture(const std::string& path, SDL_Renderer* renderer) {
     SDL_Texture* newTexture = nullptr;
     SDL_Surface* loadedSurface = IMG_Load(path.c_str());
@@ -18,7 +17,7 @@ SDL_Texture* loadTexture(const std::string& path, SDL_Renderer* renderer) {
     return newTexture;
 }
 
-// sound
+// am thanh
 void loadSound(){
     jumpSound = Mix_LoadWAV("Data/sound/jump_sound.wav");
     dieSound = Mix_LoadWAV("Data/sound/die_sound.wav");
@@ -50,23 +49,9 @@ void Score::render(SDL_Renderer* renderer) {
     ss.fill('0');
     ss <<"score:"<< value;
     SDL_Color color = {83, 83, 83, 255};
-
     font = TTF_OpenFont("fonts/pixel.ttf",13);
-    if (font == nullptr) {
-        SDL_Log("Không thể mở font để vẽ lỗi: %s", TTF_GetError());
-        return;
-    }
     SDL_Surface* surface = TTF_RenderText_Solid(font, ss.str().c_str(), color);
-    if (surface == nullptr) {
-        SDL_Log("ERROR: Failed to create surface from text! SDL_ttf Error: %s\n", TTF_GetError());
-        return;
-    }
     SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
-    if (texture == nullptr) {
-        SDL_Log("ERROR: Failed to create texture from surface! SDL Error: %s\n", SDL_GetError());
-        SDL_FreeSurface(surface);
-        return;
-    }
     SDL_Rect destRect = {400, 5, surface->w , surface->h};
     SDL_RenderCopy(renderer, texture, NULL, &destRect);
     SDL_FreeSurface(surface);
@@ -79,17 +64,15 @@ void Score::renderHighScore(SDL_Renderer* renderer) {
     font = TTF_OpenFont("fonts/arial.ttf", 24);
     if (!font) return;
 
-    int baseX = 215;  // X-position aligned with green boxes
-    int baseY = 90;   // Starting Y-position based on image layout
-    int boxHeight = 60; // Space between each box (box height + margin)
+    int baseX = 215;  
+    int baseY = 90;  
+    int boxHeight = 60;
 
     for (int i = 0; i < 4 && i < highScores.size(); ++i) {
         std::stringstream ss;
         ss <<"Top"<<i+1<<": "<< highScores[i];
-
         SDL_Surface* surface = TTF_RenderText_Solid(font, ss.str().c_str(), color);
         if (!surface) continue;
-
         SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
         if (!texture) {
             SDL_FreeSurface(surface);
