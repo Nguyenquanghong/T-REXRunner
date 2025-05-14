@@ -10,7 +10,7 @@ Trex::Trex(){
     fastFall = false;
     velocityY = 0;
     currentFrame = 0;
-    frameDelay = 100; // Đổi frame sau mỗi 100ms
+    frameDelay = 100; 
     lastFrameTime = SDL_GetTicks();
 }
 
@@ -38,11 +38,11 @@ void Trex:: renderTrex_Texture(SDL_Renderer* renderer){
 }
 
 void Trex::updateAnimation() {
-    Uint32 currentTime = SDL_GetTicks(); // Lấy thời gian hiện tại
+    Uint32 currentTime = SDL_GetTicks(); 
 
-    // Nếu đủ thời gian delay thì đổi frame
+   
     if (currentTime > lastFrameTime + frameDelay) {
-        currentFrame = (currentFrame + 1) % 2; // Chuyển đổi giữa 2 frame chạy
+        currentFrame = (currentFrame + 1) % 2; 
         lastFrameTime = currentTime;
     }
 }
@@ -68,7 +68,7 @@ void Trex:: trexDucking(){
 }
 
 void Trex:: trexJumping(){
-    if (!isJumping&&!isDucking) { // Chỉ nhảy khi đứng trên mặt đất
+    if (!isJumping&&!isDucking){ 
         isJumping = true;
         velocityY = JUMP_FORCE;
         Mix_PlayChannel(-1, jumpSound, 0);
@@ -77,9 +77,8 @@ void Trex:: trexJumping(){
 
 void Trex:: updatePhysic(){
     if (isJumping) {
-        trexRect.y += velocityY;  // Cập nhật vị trí
-        velocityY += fastFall ? GRAVITY*4 : GRAVITY; // Ảnh hưởng của trọng lực
-        // Chạm đất
+        trexRect.y += velocityY; 
+        velocityY += fastFall ? GRAVITY*4 : GRAVITY; 
         if (onGround()) {
             trexRect.y =TREX_Y;
             isJumping = false;
@@ -88,8 +87,9 @@ void Trex:: updatePhysic(){
         }
     }
 }
+
 void Trex:: resetPosition(){
-    trexRect = {TREX_X, TREX_Y, TREX_WIDTH, TREX_HEIGHT}; // Reset vị trí ban đầu
+    trexRect = {TREX_X, TREX_Y, TREX_WIDTH, TREX_HEIGHT}; 
     isDucking = false;
     isJumping = false;
     fastFall = false;
