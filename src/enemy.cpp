@@ -15,7 +15,7 @@ Enemy::Enemy() {
     lastBulletTime = SDL_GetTicks();
     shooterLastFrameTime = SDL_GetTicks();
 
-    // Initialize size for all 11 objects
+    // mang kich thuoc + toa do cac enemy
     predefinedObjectSizes[0] = {0, 0, 35, 60};
     predefinedObjectSizes[1] = {0, 0, 45, 50};
     predefinedObjectSizes[2] = {0, 0, 50, 50};
@@ -27,14 +27,12 @@ Enemy::Enemy() {
     predefinedObjectSizes[8] = {0, 0, 75, 80};
     predefinedObjectSizes[9] = {0, 0, 65, 65};
     predefinedObjectSizes[10] = {0, 0, 40, 50};
-
     for (int i = 0; i < 11; i++) {
         objectRects[i].x = WINDOW_WIDTH;
         objectRects[i].y = BG_Y + (70 - predefinedObjectSizes[i].h);
         objectRects[i].w = predefinedObjectSizes[i].w;
         objectRects[i].h = predefinedObjectSizes[i].h;
     }
-
     objectRects[6].y = (rand() % 2 < 7) ? 200 : 240;
     bullet.active = false;
     bullet.speed = 13;
@@ -62,9 +60,9 @@ void Enemy::updateObjectPosition(SDL_Renderer* renderer) {
         currentObjectIndex = rand() % 11;
         objectRects[currentObjectIndex].x = WINDOW_WIDTH;
 
-        if (currentObjectIndex == 6) { // Bird xuất hiện
+        if (currentObjectIndex == 6) { 
             objectRects[6].y = (rand() % 2) ? 190 : 250;
-            birdMovingUp = (rand() % 2); // Ngẫu nhiên chọn đi lên hoặc xuống khi spawn mới
+            birdMovingUp = (rand() % 2);
     }
 }
 
@@ -75,17 +73,17 @@ void Enemy::updateObjectPosition(SDL_Renderer* renderer) {
             birdFrame = (birdFrame + 1) % 2;
             birdLastFrameTime = currentTime;
         }
-          int moveSpeed = 1; // tốc độ di chuyển theo trục Y (1 pixel mỗi lần gọi update)
+          int moveSpeed = 1; 
 
         if (birdMovingUp) {
             objectRects[6].y -= moveSpeed;
             if (objectRects[6].y <= 190) {
-                birdMovingUp = false; // đổi hướng xuống
+                birdMovingUp = false; 
             }
         } else {
             objectRects[6].y += moveSpeed;
             if (objectRects[6].y >= 250) {
-                birdMovingUp = true; // đổi hướng lên
+                birdMovingUp = true;
             }
         }
         SDL_Rect srcRect = { birdFrame * 84, 0, 84, 60 };
@@ -139,7 +137,7 @@ void Enemy::updateObjectPosition(SDL_Renderer* renderer) {
         SDL_RenderFillRect(renderer, &bullet.rect);
         if (bullet.rect.x + bullet.rect.w < 0) bullet.active = false;
         }
-    }
+    } // xu li animation cho enemy
 
 bool Enemy::checkCollision(const SDL_Rect& dinoRect) {
     SDL_Rect& enemyRect = objectRects[currentObjectIndex];
