@@ -35,19 +35,14 @@ void Background :: renderSunCloud_Texture(SDL_Renderer* renderer){
     SDL_RenderCopy(renderer, pause_icon, NULL, &rectPause);
 }
 void Background::updateBackgroundPosition(SDL_Renderer* renderer) {
-
-    // Cập nhật vị trí nền theo thời gian thực
     BG_X -= SpeedController::getSpeed(); 
-
-    // Nếu ảnh đầu tiên chạy ra khỏi màn hình, đưa nó về cuối danh sách
     if (BG_X <= -WINDOW_WIDTH) {
         SDL_Texture* firstTexture = bgTextures.front();
         bgTextures.erase(bgTextures.begin());
         bgTextures.push_back(firstTexture);
-        BG_X += WINDOW_WIDTH; // Duy trì vị trí chính xác
+        BG_X += WINDOW_WIDTH; 
     }
 
-    // Vẽ background theo thứ tự trong danh sách
     int numberOfBackgrounds = bgTextures.size();
     for (int i = 0; i < numberOfBackgrounds; i++) {
         SDL_Rect dstRect = {static_cast<int>(BG_X + i * WINDOW_WIDTH), BG_Y, BG_WIDTH, BG_HEIGHT};
